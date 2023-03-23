@@ -22,11 +22,14 @@ public class AuthProviderImpl implements AuthenticationProvider {
         this.personDetailsService = personDetailsService;
     }
 
-    @Override
+    @Override //Спринг секьюрити сам передасть в этот метод Authentification с креденшелом а отдаст с
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         String username = authentication.getName();
+
         UserDetails personDetails = personDetailsService.loadUserByUsername(username);
+
         String password = authentication.getCredentials().toString();
+
         if (!password.equals(personDetails.getPassword()))
             throw new BadCredentialsException("password is shit!");
         return new UsernamePasswordAuthenticationToken(personDetails, password,
