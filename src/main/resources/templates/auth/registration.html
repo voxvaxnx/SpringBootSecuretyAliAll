@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/auth/registration}" th:object="${person}"> <!-- тут th:action это на какой адрес отправляем POST запрос из формы а th:object это обьект из модели-->
+    <label for="username">Введите имя пользователя</label>  <!--label для input'а  for="name" - указываем id inputa  -->
+    <input type="text" th:field="*{username}" id="username"/> <!--тут мы создаем input(edit) в html, th:field="*{name}" так передаем информ. к полю объекта th:object="${person}" -->
+    <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Не имя а говно полное!</div>
+    <br> <!-- пустая строка-->
+    <label for="yearOfBirth">Введите год рождения</label>  <!--label для input'а  for="name" - указываем id inputa  -->
+    <input type="text" th:field="*{yearOfBirth}" id="yearOfBirth"/>
+    <div style="color: red" th:if="${#fields.hasErrors('yearOfBirth')}" th:errors="*{yearOfBirth}">Год рождения пиздеж же ну...</div>
+    <br>
+    <label for="password">Введите пароль</label>  <!--label для input'а  for="name" - указываем id inputa  -->
+    <input type="password" th:field="*{password}" id="password"/>
+    <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Это разве пароль? пиздец ты...</div>
+
+    <input type="submit" value="SignUp!"/>
+</form>
+
+
+</body>
+</html>
