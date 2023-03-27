@@ -12,7 +12,7 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "Person")
+@Table(name = "person")
 public class Person {
     @Id
     @Column(name = "id")
@@ -30,6 +30,10 @@ public class Person {
 
     @Column(name = "password")
     private String password;
+
+    @Column(name = "role")
+    private String role;
+
 
     // Конструктор по умолчанию нужен для Spring
     public Person() {
@@ -70,6 +74,14 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
